@@ -34,6 +34,7 @@ accurate, and informative information to guide players in the world of ArcheRage
 ## Getting Started
 If you are one of the handful of devs that have access to this project
 here are the following steps to install an run this application
+re-configure `config.ini` to your liking
 
 ### Prerequisites
 - Python 3.8+
