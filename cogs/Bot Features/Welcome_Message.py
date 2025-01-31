@@ -1,13 +1,18 @@
+from configparser import ConfigParser
+
 import discord
 from discord.ext import commands
 
+config = ConfigParser()
+config.read('config.ini')
+welcome_channel = int(config['BotSettings']['Welcome_Channel'])
 
 class WelcomeCog(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot,):
         self.bot = bot
 
     @commands.Cog.listener()
-    async def on_member_join(self, member):
+    async def on_member_join(self, member,welcome_channel):
         # Create a welcome Embed
         welcome_embed = discord.Embed(
             title=f"Welcome to the server, {member.display_name}!",
@@ -33,7 +38,7 @@ class WelcomeCog(commands.Cog):
             print(f"Failed to send welcome DM to {member.name}#{member.discriminator}. Direct Messages are disabled.")
 
         # Get the welcome channel (you need to replace 'welcome_channel_id' with the actual ID of your welcome channel)
-        welcome_channel = member.guild.get_channel(1271671670175830036)
+        welcome_channel = member.guild.get_channel(welcome_channel)
 
         if welcome_channel:
             # Send the welcome Embed in the welcome channel

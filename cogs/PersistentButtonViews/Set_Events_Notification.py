@@ -1,11 +1,13 @@
+from configparser import ConfigParser
+
 import discord
 from discord.ext import commands
-from discord import ui
-from configparser import ConfigParser
+
 
 config = ConfigParser()
 config.read('config.ini')
-ping_role = config['BotSettings']['Allow_Ping_Role']
+
+allow_ping_role = int(config['BotSettings']['Allow_Ping_Role'])
 
 
 class Roles(commands.Cog):
@@ -33,7 +35,7 @@ class ArcheRage_Event_Notification(discord.ui.View):
     # This is the persistent B
     @discord.ui.button(label="Set Event Notification", custom_id="Notif", style=discord.ButtonStyle.blurple)
     async def button1(self, interaction, button):
-        role_id = ping_role
+        role_id = allow_ping_role
         user = interaction.user
         role = interaction.guild.get_role(role_id)
         if role:
