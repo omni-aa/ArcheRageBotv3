@@ -6,11 +6,11 @@ from discord.ext import commands
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 from discord import Embed, app_commands
-from main import guild_id
+
 config = ConfigParser()
 config.read('config.ini')
 
-allow_ping_role = int(config['BotSettings']['Guild_ID'])
+GUILD_ID = int(config['BotSettings']['Guild_Id'])
 
 
 class EventScheduler(commands.Cog):
@@ -209,4 +209,4 @@ class EventScheduler(commands.Cog):
 
 
 async def setup(client):
-    await client.add_cog(EventScheduler(client), guilds=[discord.Object(id=guild_id)])
+    await client.add_cog(EventScheduler(client), guilds=[discord.Object(id=GUILD_ID)])
