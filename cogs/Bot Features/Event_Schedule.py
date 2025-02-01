@@ -1,5 +1,5 @@
+from configparser import ConfigParser
 import sqlite3
-
 import discord
 import pytz
 from discord.ext import commands
@@ -7,6 +7,10 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 from discord import Embed, app_commands
 from main import guild_id
+config = ConfigParser()
+config.read('config.ini')
+
+allow_ping_role = int(config['BotSettings']['Guild_ID'])
 
 
 class EventScheduler(commands.Cog):
